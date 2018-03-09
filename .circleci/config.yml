@@ -33,12 +33,16 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       
-      - deploy:
-          name: digital-ocean
-          command: ssh -o "StrictHostKeyChecking no" root@46.101.156.243 "cd ~/do-app; git pull; yarn install; forever start index.js"
-      - add_ssh_keys:
-          fingerprints:
-            - "7a:82:7d:a9:58:a3:33:7d:a5:93:b7:60:0a:b2:bb:a0"
+      # - deploy:
+      #     name: digital-ocean
+      #     command: ssh -o "StrictHostKeyChecking no" root@46.101.156.243 "cd ~/do-app; git pull; yarn install; forever start index.js"
+      # - add_ssh_keys:
+      #     fingerprints:
+      #       - "7a:82:7d:a9:58:a3:33:7d:a5:93:b7:60:0a:b2:bb:a0"
     
-      # run tests!
-      # - run: yarn test
+      deployment:
+          master:
+            branch: master
+            commands:
+              - echo 'deploying master branch'
+              - ssh -v $DROPLET_USER@$DROPLET_IP "cd ~/do-app; git pull; yarn install; forever start index.js"
