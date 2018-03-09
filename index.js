@@ -4,7 +4,7 @@ var express = require('express')
 var app = express()
 
 app.get('/', function (req, res) {
-  res.send('Hello Ocean')
+  res.send('Hello Ocean!')
 })
 
 app.listen(3000, function () {
