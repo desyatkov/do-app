@@ -33,9 +33,8 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       
-      - deployment:
-          master:
-            branch: master
-            commands:
-              - echo 'deploying master branch'
-              - ssh -v $DROPLET_USER@$DROPLET_IP "cd ~/do-app; git pull; yarn install; forever start index.js"
+      - deploy:
+          name: digital-ocean
+          command: 
+            - echo 'deploying master branch'
+            - ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP "cd ~/do-app; git pull; yarn install; forever start index.js"
