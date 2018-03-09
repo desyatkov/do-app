@@ -18,4 +18,4 @@ jobs:
 
       - deploy:
           name: digital-ocean
-          command: ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP "cd ~/do-app; git pull; yarn install; forever start index.js"
+          command: ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP "cd ~/do-app; git pull; yarn install; forever restart index.js"
