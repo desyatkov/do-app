@@ -25,7 +25,7 @@ jobs:
           - v1-dependencies-
 
       - run: 
-          name: install-dependencies
+          name: name: install-dependencies
           command: yarn install
 
       - save_cache:
@@ -35,5 +35,8 @@ jobs:
       
       - deploy:
           name: digital-ocean
-          commands: 
-            - ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP "cd ~/do-app; git pull; yarn install; forever start index.js"
+          command: ssh -o "StrictHostKeyChecking no" $DROPLET_USER@$DROPLET_IP "cd ~/do-app; git pull; yarn install; forever start index.js"
+      # run tests!
+      # - run: yarn test
+
+
